@@ -79,22 +79,34 @@ public class MainActivity extends AppCompatActivity {
                         TAKE_PICTURE_REQUEST_B);
             }
 
-            mCameraImageView = (ImageView) findViewById(R.id.camera_image_view);
-
-            findViewById(R.id.capture_image_button).setOnClickListener(mCaptureImageButtonClickListener);
-
-            mSaveImageButton = (Button) findViewById(R.id.save_image_button);
-            mSaveImageButton.setOnClickListener(mSaveImageButtonClickListener);
-            mSaveImageButton.setEnabled(false);
+            cameraSetup();
+//            mCameraImageView = (ImageView) findViewById(R.id.camera_image_view);
+//
+//            findViewById(R.id.capture_image_button).setOnClickListener(mCaptureImageButtonClickListener);
+//
+//            mSaveImageButton = (Button) findViewById(R.id.save_image_button);
+//            mSaveImageButton.setOnClickListener(mSaveImageButtonClickListener);
+//            mSaveImageButton.setEnabled(false);
         } else {
-            mCameraImageView = (ImageView) findViewById(R.id.camera_image_view);
-
-            findViewById(R.id.capture_image_button).setOnClickListener(mCaptureImageButtonClickListener);
-
-            mSaveImageButton = (Button) findViewById(R.id.save_image_button);
-            mSaveImageButton.setOnClickListener(mSaveImageButtonClickListener);
-            mSaveImageButton.setEnabled(false);
+            cameraSetup();
+//            mCameraImageView = (ImageView) findViewById(R.id.camera_image_view);
+//
+//            findViewById(R.id.capture_image_button).setOnClickListener(mCaptureImageButtonClickListener);
+//
+//            mSaveImageButton = (Button) findViewById(R.id.save_image_button);
+//            mSaveImageButton.setOnClickListener(mSaveImageButtonClickListener);
+//            mSaveImageButton.setEnabled(false);
         }
+    }
+
+    public void cameraSetup() {
+        mCameraImageView = (ImageView) findViewById(R.id.camera_image_view);
+
+        findViewById(R.id.capture_image_button).setOnClickListener(mCaptureImageButtonClickListener);
+
+        mSaveImageButton = (Button) findViewById(R.id.save_image_button);
+        mSaveImageButton.setOnClickListener(mSaveImageButtonClickListener);
+        mSaveImageButton.setEnabled(false);
     }
 
     @Override
@@ -130,7 +142,7 @@ public class MainActivity extends AppCompatActivity {
         if (storageState.equals(Environment.MEDIA_MOUNTED)) {
             imageDirectory = new File(
                     Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES),
-                    "com.oreillyschool.android2.camera");
+                    "com.frictionmitch");
             if (!imageDirectory.exists() && !imageDirectory.mkdirs()) {
                 imageDirectory = null;
             } else {

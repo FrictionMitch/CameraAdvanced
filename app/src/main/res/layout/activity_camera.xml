@@ -41,28 +41,22 @@
             android:scaleY="3"
             android:background="@android:drawable/sym_def_app_icon"
             android:alpha=".4"/>
-    </FrameLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:gravity="center"
-        android:orientation="horizontal" >
 
         <Button
             android:id="@+id/capture_image_button"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:text="@string/capture_image"
-            tools:ignore="ButtonStyle"/>
+            tools:ignore="ButtonStyle"
+            android:layout_gravity="bottom|left"/>
 
         <Button
             android:id="@+id/done_button"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:text="@string/done"
-            tools:ignore="ButtonStyle"/>
-    </LinearLayout>
+            tools:ignore="ButtonStyle"
+            android:layout_gravity="bottom|right"/>
+    </FrameLayout>
 
 </LinearLayout>
