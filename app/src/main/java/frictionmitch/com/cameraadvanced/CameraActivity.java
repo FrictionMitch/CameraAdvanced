@@ -35,6 +35,7 @@ public class CameraActivity extends Activity implements PictureCallback, Surface
     private SurfaceView mCameraPreview;
     private Button mCaptureImageButton;
     private ImageButton mImageButton;
+    private ImageButton mFartButton;
     private byte[] mCameraData;
     private boolean mIsCapturing;
     private float mDist;
@@ -44,6 +45,7 @@ public class CameraActivity extends Activity implements PictureCallback, Surface
         @Override
         public void onClick(View v) {
             captureImage();
+
         }
     };
 
@@ -65,6 +67,20 @@ public class CameraActivity extends Activity implements PictureCallback, Surface
                 setResult(RESULT_CANCELED);
             }
             finish();
+        }
+    };
+
+    private OnClickListener mHideImageButtonClickListener = new OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            hideFartButton();
+        }
+    };
+
+    private OnClickListener mHideFartImageButtonClickListener = new OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            swapImageButton();
         }
     };
 
@@ -96,7 +112,12 @@ public class CameraActivity extends Activity implements PictureCallback, Surface
 
         // Click on the icon to do something...
         mImageButton = (ImageButton) findViewById(R.id.imageButton);
-        mImageButton.setOnClickListener(mCaptureImageButtonClickListener);
+        mImageButton.setOnClickListener(mHideImageButtonClickListener);
+//        mImageButton.setOnClickListener(mCaptureImageButtonClickListener);
+
+        mFartButton = (ImageButton) findViewById(R.id.fartButton);
+        mFartButton.setOnClickListener(mHideFartImageButtonClickListener);
+
 
         // Click on "Snap Picure" button to do something...
         mCaptureImageButton = (Button) findViewById(R.id.capture_image_button);
@@ -320,6 +341,22 @@ public class CameraActivity extends Activity implements PictureCallback, Surface
         float x = event.getX(0) - event.getX(1);
         float y = event.getY(0) - event.getY(1);
         return (float) Math.sqrt(x * x + y * y);
+    }
+
+    public void swapImageButton() {
+        if(mImageButton.isShown()) {
+        mImageButton.setVisibility(View.INVISIBLE);
+        } else {
+            mImageButton.setVisibility(View.VISIBLE);
+        }
+    }
+
+    public void hideFartButton() {
+        if(mFartButton.isShown()) {
+            mFartButton.setVisibility(View.INVISIBLE);
+        } else {
+            mFartButton.setVisibility(View.VISIBLE);
+        }
     }
 }
 //
