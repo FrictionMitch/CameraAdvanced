@@ -67,6 +67,15 @@
             android:text="@string/done"
             tools:ignore="ButtonStyle"
             android:layout_gravity="bottom|right"/>
+
+        <Button
+            android:id="@+id/switch_camera"
+            android:text="@string/switch_camera"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="onClick"
+            android:layout_gravity="end"/>
+
     </FrameLayout>
 
 </LinearLayout>

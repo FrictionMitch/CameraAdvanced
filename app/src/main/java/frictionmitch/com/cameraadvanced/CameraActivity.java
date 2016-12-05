@@ -39,6 +39,8 @@ public class CameraActivity extends Activity implements PictureCallback, Surface
     private byte[] mCameraData;
     private boolean mIsCapturing;
     private float mDist;
+    private int switchCount = 1;
+    private Button mSwitchCamera;
 //    private SurfaceHolder mHolder;
 
     private OnClickListener mCaptureImageButtonClickListener = new OnClickListener() {
@@ -84,6 +86,17 @@ public class CameraActivity extends Activity implements PictureCallback, Surface
         }
     };
 
+    private OnClickListener mSwitchCameraButtonClickListener = new OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            onPause();
+            ++switchCount;
+            switchCount = 2 % switchCount;
+//            switchCount = 0;
+            callCamera();
+        }
+    };
+
 
 //    public CameraActivity(Camera camera) {
 ////        super(context);
@@ -114,6 +127,9 @@ public class CameraActivity extends Activity implements PictureCallback, Surface
         mImageButton = (ImageButton) findViewById(R.id.imageButton);
         mImageButton.setOnClickListener(mHideImageButtonClickListener);
 //        mImageButton.setOnClickListener(mCaptureImageButtonClickListener);
+
+        mSwitchCamera = (Button) findViewById(R.id.switch_camera);
+        mSwitchCamera.setOnClickListener(mSwitchCameraButtonClickListener);
 
         mFartButton = (ImageButton) findViewById(R.id.fartButton);
         mFartButton.setOnClickListener(mHideFartImageButtonClickListener);
@@ -168,7 +184,7 @@ public class CameraActivity extends Activity implements PictureCallback, Surface
     public void callCamera() {
         if (mCamera == null) {
             try {
-                mCamera = Camera.open(1);
+                mCamera = Camera.open(switchCount);
                 mCamera.setPreviewDisplay(mCameraPreview.getHolder());
                 if (mIsCapturing) {
                     mCamera.startPreview();
@@ -221,8 +237,13 @@ public class CameraActivity extends Activity implements PictureCallback, Surface
             try {
                 mCamera.setPreviewDisplay(holder);
                 if (mIsCapturing) {
-                    mCamera.setDisplayOrientation(90);
-                    mCamera.startPreview();
+                    if(switchCount == 1) {
+                        mCamera.setDisplayOrientation(90);
+                        mCamera.startPreview();
+                    } else {
+                        mCamera.setDisplayOrientation(0);
+                        mCamera.startPreview();
+                    }
                 }
             } catch (IOException e) {
                 Toast.makeText(CameraActivity.this, "Unable to start camera preview.", Toast.LENGTH_LONG).show();
