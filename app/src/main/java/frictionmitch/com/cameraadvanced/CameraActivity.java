@@ -90,10 +90,13 @@ public class CameraActivity extends Activity implements PictureCallback, Surface
         @Override
         public void onClick(View v) {
             onPause();
+
             switchCount++;
             switchCount = switchCount % 2;
 //            switchCount = 0;
             callCamera();
+            mCamera.setDisplayOrientation(90);
+            mCamera.startPreview();
         }
     };
 
@@ -237,13 +240,10 @@ public class CameraActivity extends Activity implements PictureCallback, Surface
             try {
                 mCamera.setPreviewDisplay(holder);
                 if (mIsCapturing) {
-                    if(switchCount == 1) {
+
                         mCamera.setDisplayOrientation(90);
                         mCamera.startPreview();
-                    } else {
-//                        mCamera.setDisplayOrientation(0);
-                        mCamera.startPreview();
-                    }
+
                 }
             } catch (IOException e) {
                 Toast.makeText(CameraActivity.this, "Unable to start camera preview.", Toast.LENGTH_LONG).show();
