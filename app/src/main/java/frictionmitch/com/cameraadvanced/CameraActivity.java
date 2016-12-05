@@ -203,6 +203,8 @@ public class CameraActivity extends Activity implements PictureCallback, Surface
     protected void onResume() {
         super.onResume();
         callCamera();
+        mCamera.setDisplayOrientation(90);
+        mCamera.startPreview();
 
 //        if (mCamera == null) {
 //            try {
