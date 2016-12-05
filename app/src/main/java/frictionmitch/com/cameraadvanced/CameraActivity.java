@@ -90,8 +90,8 @@ public class CameraActivity extends Activity implements PictureCallback, Surface
         @Override
         public void onClick(View v) {
             onPause();
-            ++switchCount;
-            switchCount = 2 % switchCount;
+            switchCount++;
+            switchCount = switchCount % 2;
 //            switchCount = 0;
             callCamera();
         }
@@ -241,7 +241,7 @@ public class CameraActivity extends Activity implements PictureCallback, Surface
                         mCamera.setDisplayOrientation(90);
                         mCamera.startPreview();
                     } else {
-                        mCamera.setDisplayOrientation(0);
+//                        mCamera.setDisplayOrientation(0);
                         mCamera.startPreview();
                     }
                 }
