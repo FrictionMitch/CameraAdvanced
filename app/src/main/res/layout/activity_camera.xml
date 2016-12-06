@@ -5,12 +5,8 @@
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-              android:background="#999999">
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/capturing_image" />
+              android:id="@+id/linear_layout"
+              >
 
     <FrameLayout
         android:id="@+id/camera_frame"
@@ -33,11 +29,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:srcCompat="@mipmap/gut"
-            android:id="@+id/imageButton"
+            android:id="@+id/stomachButton"
             android:layout_gravity="bottom|center_horizontal"
             android:contentDescription="abdomin"
-            android:layout_marginBottom="100dp"
-            android:scaleX="5.5"
+            android:layout_marginBottom="120dp"
+            android:scaleX="5"
             android:scaleY="4"
             android:background="@mipmap/gut"
             android:alpha=".5"

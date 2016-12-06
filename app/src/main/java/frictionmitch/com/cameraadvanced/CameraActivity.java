@@ -4,14 +4,13 @@ import java.io.IOException;
 import java.util.List;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.hardware.Camera;
 import android.hardware.Camera.PictureCallback;
 import android.os.Bundle;
-import android.util.Log;
+import android.util.DisplayMetrics;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -20,6 +19,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 
@@ -34,8 +34,8 @@ public class CameraActivity extends Activity implements PictureCallback, Surface
     private ImageView mCameraImage;
     private SurfaceView mCameraPreview;
     private Button mCaptureImageButton;
-    private ImageButton mImageButton;
-    private ImageButton mFartButton;
+    private ImageButton mStomachImageButton;
+    private ImageButton mFartImageButton;
     private byte[] mCameraData;
     private boolean mIsCapturing;
     private float mDist;
@@ -127,15 +127,14 @@ public class CameraActivity extends Activity implements PictureCallback, Surface
         surfaceHolder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
 
         // Click on the icon to do something...
-        mImageButton = (ImageButton) findViewById(R.id.imageButton);
-        mImageButton.setOnClickListener(mHideImageButtonClickListener);
-//        mImageButton.setOnClickListener(mCaptureImageButtonClickListener);
-
         mSwitchCamera = (Button) findViewById(R.id.switch_camera);
         mSwitchCamera.setOnClickListener(mSwitchCameraButtonClickListener);
 
-        mFartButton = (ImageButton) findViewById(R.id.fartButton);
-        mFartButton.setOnClickListener(mHideFartImageButtonClickListener);
+        mStomachImageButton = (ImageButton) findViewById(R.id.stomachButton);
+        mStomachImageButton.setOnClickListener(mHideImageButtonClickListener);
+
+        mFartImageButton = (ImageButton) findViewById(R.id.fartButton);
+        mFartImageButton.setOnClickListener(mHideFartImageButtonClickListener);
 
 
         // Click on "Snap Picure" button to do something...
@@ -197,6 +196,16 @@ public class CameraActivity extends Activity implements PictureCallback, Surface
                         .show();
             }
         }
+        if (switchCount % 2 == 0) {
+//            mStomachImageButton.setPadding(0, 0, 0, 500);
+            mStomachImageButton.setScaleX(2.5f);
+            mStomachImageButton.setScaleY(1.5f);
+//            getCenter();
+        } else {
+            mStomachImageButton.setScaleX(5);
+            mStomachImageButton.setScaleY(4);
+            mStomachImageButton.setPadding(0, 0, 0, 120);
+        }
     }
 
     @Override
@@ -205,19 +214,6 @@ public class CameraActivity extends Activity implements PictureCallback, Surface
         callCamera();
         mCamera.setDisplayOrientation(90);
         mCamera.startPreview();
-
-//        if (mCamera == null) {
-//            try {
-//                mCamera = Camera.open(1);
-//                mCamera.setPreviewDisplay(mCameraPreview.getHolder());
-//                if (mIsCapturing) {
-//                    mCamera.startPreview();
-//                }
-//            } catch (Exception e) {
-//                Toast.makeText(CameraActivity.this, "Unable to open camera.", Toast.LENGTH_LONG)
-//                        .show();
-//            }
-//        }
     }
 
     @Override
@@ -367,19 +363,34 @@ public class CameraActivity extends Activity implements PictureCallback, Surface
     }
 
     public void swapImageButton() {
-        if(mImageButton.isShown()) {
-        mImageButton.setVisibility(View.INVISIBLE);
+        if(mStomachImageButton.isShown()) {
+        mStomachImageButton.setVisibility(View.INVISIBLE);
         } else {
-            mImageButton.setVisibility(View.VISIBLE);
+            mStomachImageButton.setVisibility(View.VISIBLE);
         }
     }
 
     public void hideFartButton() {
-        if(mFartButton.isShown()) {
-            mFartButton.setVisibility(View.INVISIBLE);
+        if(mFartImageButton.isShown()) {
+            mFartImageButton.setVisibility(View.INVISIBLE);
         } else {
-            mFartButton.setVisibility(View.VISIBLE);
+            mFartImageButton.setVisibility(View.VISIBLE);
         }
+    }
+
+    public void scaleImage() {
+
+    }
+
+    public void getCenter() {
+
+        DisplayMetrics metrics = getResources().getDisplayMetrics();
+
+        int DeviceTotalWidth = metrics.widthPixels;
+        int DeviceTotalHeight = metrics.heightPixels;
+
+        LinearLayout LinearLayoutImageCenter=(LinearLayout) findViewById(R.id.linear_layout);
+        mStomachImageButton.setPadding(DeviceTotalWidth/4,DeviceTotalHeight/4,0,0);
     }
 }
 //
