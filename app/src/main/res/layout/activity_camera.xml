@@ -32,11 +32,11 @@
             android:id="@+id/stomachButton"
             android:layout_gravity="bottom|center_horizontal"
             android:contentDescription="abdomin"
-            android:layout_marginBottom="120dp"
-            android:scaleX="5"
-            android:scaleY="4"
-            android:background="@mipmap/gut"
             android:alpha=".5"
+            android:background="@mipmap/gut"
+            android:layout_marginBottom="130dp"
+            android:scaleX="4.5"
+            android:scaleY="3.5"
             />
 
         <ImageButton
@@ -46,7 +46,9 @@
             android:background="@mipmap/fart_shart"
             android:id="@+id/fartButton"
             android:paddingTop="20dp"
-            android:paddingLeft="20dp"/>
+            android:paddingLeft="20dp"
+            android:layout_marginStart="@dimen/activity_horizontal_margin"
+            android:layout_marginTop="@dimen/activity_vertical_margin"/>
 
         <Button
             android:id="@+id/capture_image_button"
@@ -54,7 +56,9 @@
             android:layout_height="wrap_content"
             android:text="@string/capture_image"
             tools:ignore="ButtonStyle"
-            android:layout_gravity="bottom|left"/>
+            android:layout_gravity="bottom|left"
+            android:layout_marginStart="10dp"
+            android:layout_marginBottom="10dp"/>
 
         <Button
             android:id="@+id/done_button"
@@ -62,7 +66,9 @@
             android:layout_height="wrap_content"
             android:text="@string/done"
             tools:ignore="ButtonStyle"
-            android:layout_gravity="bottom|right"/>
+            android:layout_gravity="bottom|right"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"/>
 
         <Button
             android:id="@+id/switch_camera"
@@ -70,7 +76,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="onClick"
-            android:layout_gravity="end"/>
+            android:layout_gravity="end"
+            android:layout_marginEnd="@dimen/activity_horizontal_margin"
+            android:layout_marginTop="@dimen/activity_vertical_margin"/>
 
     </FrameLayout>
 

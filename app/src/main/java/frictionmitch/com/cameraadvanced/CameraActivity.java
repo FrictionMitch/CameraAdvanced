@@ -43,6 +43,7 @@ public class CameraActivity extends Activity implements PictureCallback, Surface
     private Button mSwitchCamera;
 //    private SurfaceHolder mHolder;
 
+
     private OnClickListener mCaptureImageButtonClickListener = new OnClickListener() {
         @Override
         public void onClick(View v) {
@@ -93,12 +94,18 @@ public class CameraActivity extends Activity implements PictureCallback, Surface
 
             switchCount++;
             switchCount = switchCount % 2;
-//            switchCount = 0;
             callCamera();
             mCamera.setDisplayOrientation(90);
             mCamera.startPreview();
         }
     };
+
+    public int pixelsToDp(int dp) {
+        int padding_in_dp = dp;  // 6 dps
+        final float scale = getResources().getDisplayMetrics().density;
+        int padding_in_px = (int) (padding_in_dp * scale + 0.5f);
+        return padding_in_px;
+    }
 
 
 //    public CameraActivity(Camera camera) {
@@ -197,14 +204,15 @@ public class CameraActivity extends Activity implements PictureCallback, Surface
             }
         }
         if (switchCount % 2 == 0) {
-//            mStomachImageButton.setPadding(0, 0, 0, 500);
-            mStomachImageButton.setScaleX(2.5f);
+//            mStomachImageButton.setPadding(0, 0, 0, pixelsToDp(200));
+//            mStomachImageButton.setLayoutParams();
+            mStomachImageButton.setScaleX(2f);
             mStomachImageButton.setScaleY(1.5f);
 //            getCenter();
         } else {
             mStomachImageButton.setScaleX(5);
             mStomachImageButton.setScaleY(4);
-            mStomachImageButton.setPadding(0, 0, 0, 120);
+//            mStomachImageButton.setPadding(0, 0, 0, pixelsToDp(120));
         }
     }
 
