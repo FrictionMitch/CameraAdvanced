@@ -37,31 +37,27 @@ public class BMSummary extends Activity {
     private TextView mTextView;
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_summary);
-
-
+        Intent intent = getIntent();
+//        String value = intent.getStringExtra("key"); //if it's a string you stored.
         mBackButton = (Button) findViewById(R.id.back_button);
         mBackButton.setOnClickListener(mBackButtonClickListener);
+
 
 
         mTextView = (TextView)findViewById(R.id.text_view);
         mTextView.setText("Fuck");
         randomText();
         mTextView.setText(randomText().toString());
+        Toast.makeText(this, mTextView.getText(), Toast.LENGTH_SHORT).show();
 
 //        mSwitchCamera = (Button) findViewById(R.id.switch_camera);
 //        mSwitchCamera.setOnClickListener(mSwitchCameraButtonClickListener);
 
 //        mBackImageButton = (ImageButton)findViewById(R.id.backImageButton);
 //        mBackImageButton.setOnClickListener(mBackButtonClickListener);
-
-
-//    The best way is you declare you Strings as an Array, then get it like this:
-//
-//    String[] arrayOfStrings = context.getResources().getStringArray(R.array.your_string_array);
-//    String randomString = arrayOfStrings[new Random().nextInt(arrayOfStrings.length)];
     }
 
     private OnClickListener mBackButtonClickListener = new OnClickListener() {

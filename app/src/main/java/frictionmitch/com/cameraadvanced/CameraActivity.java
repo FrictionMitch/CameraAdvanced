@@ -22,6 +22,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import static android.R.attr.value;
+
 
 public class CameraActivity extends Activity implements PictureCallback, SurfaceHolder.Callback {
 
@@ -103,9 +105,13 @@ public class CameraActivity extends Activity implements PictureCallback, Surface
     private OnClickListener mStomachButtonClickListener = new OnClickListener() {
         @Override
         public void onClick(View v) {
-            setContentView(R.layout.activity_summary);
+//            setContentView(R.layout.activity_summary);
+            Intent myIntent = new Intent(CameraActivity.this, BMSummary.class);
+//            myIntent.putExtra("key", value); //Optional parameters
+            CameraActivity.this.startActivity(myIntent);
             mCamera.release();
             mCamera = null;
+
         }
     };
 
