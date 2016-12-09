@@ -8,4 +8,11 @@
     <string name="capturing_image">Taking New Picture</string>
     <string name="done">Done</string>
     <string name="switch_camera">Switch</string>
+
+    <string-array name="heading">
+        <item>You are fucked</item>
+        <item>Lots of time</item>
+        <item>Too late</item>
+        <item>You are going to need a bath</item>
+    </string-array>
 </resources>
