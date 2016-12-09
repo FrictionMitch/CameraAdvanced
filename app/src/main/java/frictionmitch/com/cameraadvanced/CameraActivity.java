@@ -100,12 +100,22 @@ public class CameraActivity extends Activity implements PictureCallback, Surface
         }
     };
 
+    private OnClickListener mStomachButtonClickListener = new OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            setContentView(R.layout.activity_summary);
+            mCamera.release();
+            mCamera = null;
+        }
+    };
+
     public int pixelsToDp(int dp) {
         int padding_in_dp = dp;  // 6 dps
         final float scale = getResources().getDisplayMetrics().density;
         int padding_in_px = (int) (padding_in_dp * scale + 0.5f);
         return padding_in_px;
     }
+
 
 
 //    public CameraActivity(Camera camera) {
@@ -138,7 +148,8 @@ public class CameraActivity extends Activity implements PictureCallback, Surface
         mSwitchCamera.setOnClickListener(mSwitchCameraButtonClickListener);
 
         mStomachImageButton = (ImageButton) findViewById(R.id.stomachButton);
-        mStomachImageButton.setOnClickListener(mHideImageButtonClickListener);
+        mStomachImageButton.setOnClickListener(mStomachButtonClickListener);
+//        mStomachImageButton.setOnClickListener(mHideImageButtonClickListener);
 
         mFartImageButton = (ImageButton) findViewById(R.id.fartButton);
         mFartImageButton.setOnClickListener(mHideFartImageButtonClickListener);

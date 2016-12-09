@@ -22,7 +22,12 @@
         <activity
             android:name=".CameraActivity"
             android:label="@string/capture_image"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".BMSummary"
+                  android:label="Summary"
+                  android:screenOrientation="portrait"
+                  />
     </application>
 
 </manifest>
